@@ -1,0 +1,20 @@
+{
+  "name": "promise-with-status",
+  "version": "1.0.0",
+  "description": "A Promise class with a status property",
+  "main": "dist/promise-with-status.min.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "repository": "https://github.com/cedrictailly/promise-with-status.git",
+  "author": "Cédric Tailly",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.12.0",
+    "rollup-plugin-license": "^3.2.0"
+  }
+}

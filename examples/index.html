@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>PromiseWithStatus</title>
+  <script src="../dist/promise-with-status.min.js"></script>
+  <script>
+
+    window.addEventListener("DOMContentLoaded", async () => {
+
+      const log = console.log;
+      console.log = (...args) => {
+        log.apply(console, args);
+        logs.appendChild(
+          document.createTextNode(args.map(arg => JSON.stringify(arg)).join(' ') + '\n')
+        );
+      };
+
+      const promises = [];
+
+      promises.push(new PromiseWithStatus((resolve, reject) => {
+        resolve(true);
+      }));
+
+      promises.push(new PromiseWithStatus((resolve, reject) => {
+        setTimeout(() => { resolve(true); }, 100);
+      }));
+
+      console.log(promises.map(p => p.status));
+
+      await Promise.all(promises.filter(p => p.status == "pending"));
+
+      console.log(promises.map(p => p.status));
+    });
+
+  </script>
+</head>
+
+<body>
+
+  <div>
+    <pre id="logs"></pre>
+  </div>
+
+</body>
+
+</html>

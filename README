@@ -1,0 +1,85 @@
+
+# PromiseWithStatus
+
+`PromiseWithStatus` is a JavaScript class that wraps standard promises with the ability to track their status.
+
+## Installation
+
+Via npm:
+
+```bash
+npm install promise-with-status
+```
+
+## Usage
+
+### ESM (ECMAScript Module)
+
+```javascript
+import PromiseWithStatus from "promise-with-status";
+
+const promises = [];
+
+promises.push(new PromiseWithStatus((resolve, reject) => {
+  resolve(true);
+}));
+
+promises.push(new PromiseWithStatus((resolve, reject) => {
+  setTimeout(() => { resolve(true); }, 100);
+}));
+
+console.log(promises.map(p => p.status));
+
+await Promise.all(promises.filter(p => p.status == "pending"));
+
+console.log(promises.map(p => p.status));
+```
+
+### CommonJS
+
+The `PromiseWithStatus` class can also be used with CommonJS:
+
+```javascript
+const PromiseWithStatus = require("promise-with-status");
+
+(async () => {
+
+  const promises = [];
+
+  promises.push(new PromiseWithStatus((resolve, reject) => {
+    resolve(true);
+  }));
+
+  promises.push(new PromiseWithStatus((resolve, reject) => {
+    setTimeout(() => { resolve(true); }, 100);
+  }));
+
+  console.log(promises.map(p => p.status));
+
+  await Promise.all(promises.filter(p => p.status == "pending"));
+
+  console.log(promises.map(p => p.status));
+
+})();
+
+```
+
+## Examples
+
+You can find usage examples in the /examples directory.
+
+## Compatibility and Types
+
+It is compatible with the following module formats:
+
+- ESM (ECMAScript Module)
+- CommonJS
+- AMD (Asynchronous Module Definition)
+- UMD (Universal Module Definition)
+- TypeScript
+
+The UMD version with sourcemaps for web browser is available in /dist/promise-with-status.min.js.
+
+## License
+
+This project is licensed under the MIT License.

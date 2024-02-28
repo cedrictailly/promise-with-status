@@ -1,0 +1,2 @@
+promise-with-status v<%= pkg.version %>
+By <%= pkg.author %>
